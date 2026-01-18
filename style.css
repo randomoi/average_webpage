@@ -1,0 +1,273 @@
+/* Base Resets */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #fff;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Fixed Navigation */
+.top-nav {
+    position: fixed;
+    top: 5vh; 
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    pointer-events: auto;
+}
+
+.site-title {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.9em;
+    text-transform: uppercase;
+    opacity: 0.95;
+    margin-right: -0.9em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    transition: color 0.4s ease;
+    margin-right: -0.5em;
+}
+
+.nav-link.active, .nav-link:hover {
+    color: #fff;
+}
+
+/* Main Layout */
+.background-container {
+    height: 100vh;
+    background-image: url('assets/background_main.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 90%;
+    max-width: 1050px; 
+    padding: 0 2rem; 
+    margin-top: 16vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.6s ease;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Video Section */
+.video-section {
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Glass Card */
+.glass-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 100%;
+    max-width: 1050px; 
+    height: 60vh; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scroll Box - Set to 3rem to prevent word breaking */
+.scroll-box {
+    width: 100%;
+    height: 100%;
+    padding: 0 3rem; 
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; 
+    box-sizing: border-box;
+    text-align: center;
+    color: #222;
+    will-change: transform; 
+    backface-visibility: hidden;
+}
+
+
+
+/* Close Button */
+.close-btn {
+    align-self: flex-end;
+    margin: 1rem 1.5rem 0.5rem 0;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #222;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+/* Unified Header Styling for About and Contact */
+.scroll-box h2 {
+    letter-spacing: 0.5em;
+    font-size: 0.9rem;
+    font-weight: 800;
+    width: 100%;
+    text-transform: uppercase;
+    margin: 0;           /* Removes default browser spacing */
+    padding-top: 2.5rem; /* Standardizes the height for both views */
+    padding-bottom: 2rem;
+}
+
+.card-content p {
+    line-height: 2;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    hyphens: none; /* REMOVED auto hyphenation to stop word breaking */
+}
+
+.theory-list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.theory-list li {
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.framework-link {
+    color: #0044cc;
+    text-decoration: underline;
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+/* Web/Desktop Tally Fix */
+.tally-crop-container {
+    width: 100%;
+    max-width: 500px; /* Keeps form 50% thinner on web */
+    height: 520px;    /* The visible height of the form window */
+    margin: 0 auto;
+    overflow: hidden; /* Acts as the window to crop the top and bottom */
+    position: relative;
+    border-radius: 8px;
+}
+
+#tallyIframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    display: block;
+    /* CROPS THE TOP: Pulls the form up inside the container without touching the H2 title */
+    margin-top: -40px; 
+}
+
+/* MOBILE & ROTATION SETTINGS */
+@media screen and (max-width: 768px) {
+    .site-title {
+        font-size: 0.8rem;
+        letter-spacing: 0.5em;
+    }
+    
+    .content-wrapper {
+        margin-top: 14vh; /* Reduced slightly to give more room for the card */
+        padding: 0 1.5rem; /* Restored side padding for the edges */
+    }
+
+    .glass-card {
+        /* Prevents overlapping links by limiting height relative to screen */
+        height: 70vh; 
+        max-height: 450px; /* Safety cap for landscape rotation */
+    }
+
+    .scroll-box {
+        /* Restores 1.5rem side padding you asked for */
+        padding: 0 1.5rem 2rem 1.5rem; 
+        overflow-y: auto;
+    }
+
+    .tally-crop-container {
+        width: 100%; 
+        height: 520px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #tallyIframe {
+        display: block;
+        margin-top: -40px; 
+        height: 750px;
+        width: 100%;
+        border: none;
+    }
+}
+
+/* Specific fix for Landscape Rotation */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    .content-wrapper {
+        margin-top: 22vh;
+    }
+    .glass-card {
+        height: 60vh;
+    }
+}
+
+.scroll-box::-webkit-scrollbar { width: 8px; }
+.scroll-box::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+.scroll-box::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
